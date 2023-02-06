@@ -4,7 +4,8 @@ import typescript from "@rollup/plugin-typescript";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
-
+import svgr from "@svgr/rollup";
+import url from "@rollup/plugin-url";
 import packageJson from "./package.json" assert { type: "json" };
 
 export default [
@@ -15,6 +16,8 @@ export default [
       { file: packageJson.module, format: "esm", sourcemap: true },
     ],
     plugins: [
+      svgr(),
+      url(),
       resolve(),
       commonjs(),
       typescript({ tsconfig: "./tsconfig.json" }),

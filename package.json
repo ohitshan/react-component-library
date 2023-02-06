@@ -1,6 +1,7 @@
 {
   "name": "@ohitshan/react-component-library",
-  "version": "0.0.1",
+  "version": "0.0.5",
+  "private": false,
   "description": "react-component-library",
   "scripts": {
     "rollup": "rollup -c",
@@ -18,6 +19,7 @@
     "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^11.0.0",
+    "@rollup/plugin-url": "^8.0.1",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
@@ -26,6 +28,7 @@
     "@storybook/manager-webpack4": "^6.5.16",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
+    "@svgr/rollup": "^6.5.1",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.4.0",
     "@types/react": "^18.0.27",
@@ -61,6 +64,6 @@
     "url": "https://github.com/ohitshan/react-component-library.git"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.npmjs.com/"
   }
 }
