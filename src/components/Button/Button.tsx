@@ -6,6 +6,7 @@ import React, {
 } from "react";
 import styled, { css, CSSObject } from "styled-components";
 import "./Button.css";
+// import Arrow from "./Arrow.svg";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   block?: boolean;
@@ -37,6 +38,7 @@ const Button = ({
       {leftSvg && leftSvg}
       <StyledSpan>{label}</StyledSpan>
       {rightSvg && rightSvg}
+      {/* <Arrow /> */}
     </StyledButton>
   );
 };
