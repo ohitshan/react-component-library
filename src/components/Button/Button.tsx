@@ -1,10 +1,5 @@
-import React, {
-  ButtonHTMLAttributes,
-  ElementType,
-  FunctionComponent,
-  ReactNode,
-} from "react";
-import styled, { css, CSSObject } from "styled-components";
+import React, { ButtonHTMLAttributes, ReactNode } from "react";
+import styled, { css, CSSObject, keyframes } from "styled-components";
 import SvgArrow from "../Svgr/Arrow";
 import "./Button.css";
 
@@ -13,13 +8,16 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   color?: ColorType;
   style?: CSSObject;
-  shape?: "circle";
+  shape?: "circle" | "square";
   height?: number;
   border?: boolean;
   leftSvg?: ReactNode;
   rightSvg?: ReactNode;
   gap?: number;
   fontSize?: number;
+  loading?: boolean;
+  disabled?: boolean;
+  onClick?: () => void;
 }
 
 type ColorType = "red" | "blue" | "yellow" | "green" | "primary";
@@ -27,18 +25,36 @@ type ColorType = "red" | "blue" | "yellow" | "green" | "primary";
 const Button = ({
   label,
   color = "primary",
+  shape = "square",
   style,
   leftSvg,
   rightSvg,
-  fontSize,
+  fontSize = 24,
+  loading = false,
+  disabled,
+  onClick,
   ...args
 }: ButtonProps) => {
   return (
-    <StyledButton {...args} style={style}>
+    <StyledButton
+      {...args}
+      style={style}
+      color={color}
+      shape={shape}
+      disabled={disabled || loading}
+      onClick={onClick}
+    >
       {leftSvg && leftSvg}
-      <StyledSpan>{label}</StyledSpan>
+      <StyledSpan fontSize={fontSize}>{label}</StyledSpan>
       {rightSvg && rightSvg}
-      <SvgArrow />
+      {loading && (
+        <StyledLoading
+          fill="gray"
+          style={{ marginLeft: 10 }}
+          width={fontSize}
+          height={fontSize}
+        />
+      )}
     </StyledButton>
   );
 };
@@ -46,7 +62,10 @@ const Button = ({
 export default Button;
 
 const StyledButton = styled.button<
-  Pick<ButtonProps, "color" | "block" | "height" | "border" | "shape">
+  Pick<
+    ButtonProps,
+    "color" | "block" | "height" | "border" | "shape" | "loading" | "disabled"
+  >
 >`
   display: flex;
   align-items: center;
@@ -57,7 +76,7 @@ const StyledButton = styled.button<
           width: 100%;
         `
       : ""}
-  background: ${({ color = "primary" }) => {
+  background: ${({ color }) => {
     switch (color) {
       case "primary":
         return "white";
@@ -90,6 +109,18 @@ const StyledButton = styled.button<
       `;
     }
   }};
+
+  :disbaled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  ${({ loading }) => {
+    if (loading) {
+      return css`
+        opacity: 0.5;
+      `;
+    }
+  }}
 `;
 
 const StyledSpan = styled.span<
@@ -111,4 +142,17 @@ const StyledSpan = styled.span<
       `;
     }
   }}
+`;
+
+const rotate = keyframes`
+  0% {
+    rotate: 0;
+  }
+  100% {
+    rotate: 360deg;
+  }
+`;
+
+const StyledLoading = styled(SvgArrow)`
+  animation: 1s ${rotate} infinite linear;
 `;

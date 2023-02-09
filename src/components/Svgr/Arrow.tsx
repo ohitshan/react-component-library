@@ -23,7 +23,7 @@ const SvgArrow = ({
       fillRule="evenodd"
       clipRule="evenodd"
       d="M2.47 7.47a.75.75 0 0 1 1.06 0L12 15.94l8.47-8.47a.75.75 0 1 1 1.06 1.06l-9 9a.75.75 0 0 1-1.06 0l-9-9a.75.75 0 0 1 0-1.06Z"
-      fill="#282A2E"
+      fill="current"
     />
   </svg>
 );

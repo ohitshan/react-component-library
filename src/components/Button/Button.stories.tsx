@@ -9,7 +9,7 @@ export default {
 };
 const Template = (args: any) => (
   <div style={{ background: "red", width: 1000 }}>
-    <Button {...args} shape="circle" />
+    <Button {...args} shape="circle" loading />
   </div>
 );
 
