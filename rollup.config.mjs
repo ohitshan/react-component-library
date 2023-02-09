@@ -7,7 +7,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import svgr from "@svgr/rollup";
 import url from "@rollup/plugin-url";
 import packageJson from "./package.json" assert { type: "json" };
-import reactSvg from "rollup-plugin-react-svg";
+import { babel } from "@rollup/plugin-babel";
 
 export default [
   {
@@ -16,6 +16,7 @@ export default [
       { file: packageJson.main, format: "cjs", sourcemap: true },
       { file: packageJson.module, format: "esm", sourcemap: true },
     ],
+    external: [/@babel\/runtime/, "react"],
     plugins: [
       svgr(),
       url(),
@@ -24,7 +25,10 @@ export default [
       typescript({ tsconfig: "./tsconfig.json" }),
       postcss(),
       peerDepsExternal(),
-      svgr(),
+      babel({
+        babelHelpers: "runtime",
+        plugins: ["@babel/plugin-transform-runtime"],
+      }),
     ],
   },
   {
