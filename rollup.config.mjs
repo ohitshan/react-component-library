@@ -8,6 +8,7 @@ import svgr from "@svgr/rollup";
 import url from "@rollup/plugin-url";
 import packageJson from "./package.json" assert { type: "json" };
 import { babel } from "@rollup/plugin-babel";
+import image from "@rollup/plugin-image";
 
 export default [
   {
@@ -29,6 +30,7 @@ export default [
         babelHelpers: "runtime",
         plugins: ["@babel/plugin-transform-runtime"],
       }),
+      image(),
     ],
   },
   {

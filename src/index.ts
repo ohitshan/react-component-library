@@ -1,1 +1,1 @@
-export * from "./components";
+export { default as Arrow } from "./Arrow";

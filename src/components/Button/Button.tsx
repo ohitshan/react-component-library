@@ -1,6 +1,6 @@
 import React, { ButtonHTMLAttributes, ReactNode } from "react";
 import styled, { css, CSSObject, keyframes } from "styled-components";
-import SvgArrow from "../Svgr/Arrow";
+import Arrow from "../../../assets/Arrow.svg";
 import "./Button.css";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -48,12 +48,19 @@ const Button = ({
       <StyledSpan fontSize={fontSize}>{label}</StyledSpan>
       {rightSvg && rightSvg}
       {loading && (
-        <StyledLoading
-          fill="gray"
-          style={{ marginLeft: 10 }}
+        <StyledImage
+          src={Arrow}
           width={fontSize}
           height={fontSize}
+          alt="12"
+          color="black"
         />
+        // <StyledLoading
+        //   fill="gray"
+        //   style={{ marginLeft: 10 }}
+        //   width={fontSize}
+        //   height={fontSize}
+        // />
       )}
     </StyledButton>
   );
@@ -153,6 +160,6 @@ const rotate = keyframes`
   }
 `;
 
-const StyledLoading = styled(SvgArrow)`
+const StyledImage = styled.img`
   animation: 1s ${rotate} infinite linear;
 `;
